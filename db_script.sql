@@ -1,6 +1,6 @@
-create database loan;
 
-Create table loan.customer(
+
+Create table customer(
    customerId integer AUTO_INCREMENT,
    fullName varchar(25),
    dateOfBirth varchar(25),
@@ -11,7 +11,7 @@ Create table loan.customer(
    
 );
 
-Create table loan.inventory(
+Create table inventory(
    productId integer AUTO_INCREMENT,
    productName varchar(25),
    price double,
@@ -22,18 +22,13 @@ Create table loan.inventory(
    PRIMARY KEY (productId)
 );
 
-SELECT fullName, dateOfBirth, loanBalance, userAmount, installmentPlan 
-FROM loan.customer 
-JOIN loan.loanDetails ON loan.customer.customerId = loan.loanDetails.customerId;
-
-
-Create table loan.category(
+Create table category(
    categoryId integer AUTO_INCREMENT,
    categoryName varchar(25),
    PRIMARY KEY (categoryId)
 );
 
-create table loan.loanDetails(
+create table loanDetails(
 loanId integer AUTO_INCREMENT,
 loanBalance double,
 userAmount double,
@@ -43,5 +38,4 @@ PRIMARY KEY (loanId),
  CONSTRAINT FK_loanCustomer FOREIGN KEY (customerId)
     REFERENCES customer(customerId)	
 );
-
 
