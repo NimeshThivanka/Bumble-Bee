@@ -2,7 +2,10 @@ package com.CIS.loan.controllers;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;  
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;  
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +44,6 @@ public class CustomerController {
     
     @RequestMapping("/viewCustomer")    
     public String viewemp(Model m){ 
-    	System.out.println("Hiiii");
         List<customer> list=customerdao.getCustomer();    
         m.addAttribute("list",list);  
         return "viewCustomer";    
@@ -55,24 +57,38 @@ public class CustomerController {
     }  
     
     @RequestMapping(value="/login",method = RequestMethod.GET)    
-    public String login(@RequestParam String username, @RequestParam String password){    
+    public String login(@RequestParam String username, @RequestParam String password,HttpSession session){    
     	if (username.equals("admin@gmail.com") && password.equals("admin")) {
-//            session.setAttribute("username", username);
+            session.setAttribute("username", username);
              return "redirect:/viewInventory";
         }
     	else {
-    		 return "back";
+    		 return "redirect:/loginForm";
     	}
       
     }  
     
     
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		session.removeAttribute("username");
+		return "redirect:/loginForm";
+	}
+    
+    
     
 // Inventory 
     @RequestMapping("/inventoryform")  
-    public String showform(Model m){  
-    	m.addAttribute("command", new inventory());
-    	return "inventoryform"; 
+    public String showform(Model m,HttpSession session){  
+    	
+    	if(session.getAttribute("username") == null) {
+    		return "redirect:/loginForm";
+    	}
+    	else {
+    		m.addAttribute("command", new inventory());
+        	return "inventoryform";
+    	}
+    	 
     }  
     
     @RequestMapping(value="/save",method = RequestMethod.POST)    
@@ -83,31 +99,61 @@ public class CustomerController {
     
     
     @RequestMapping("/viewInventory")    
-    public String viewInventory(Model m){ 
-        List<inventory> list=customerdao.getInventory();    
-        m.addAttribute("list",list);  
-        return "viewInventory";    
+    public String viewInventory(Model m,HttpSession session){ 
+
+    	if(session.getAttribute("username") == null) {
+    		return "redirect:/loginForm";
+    		
+    		
+    	}
+    	else {
+    		 List<inventory> list=customerdao.getInventory();    
+    	        m.addAttribute("list",list);  
+    	        return "viewInventory"; 
+    		
+    	}
+          
     }    
    
     @RequestMapping(value="/editinventory/{id}")  
-    public String edit(@PathVariable int id, Model m){  
-    	System.out.println("awaaa");
-        inventory iny=customerdao.getProductById(id); 
-        System.out.println(iny.getProductName());
-        m.addAttribute("command",iny);
-        return "inventoryeditform";  
+    public String edit(@PathVariable int id, Model m,HttpSession session){  
+    	if(session.getAttribute("username") == null) {
+    		
+    		return "redirect:/loginForm";
+    	}
+    	else {
+    		 inventory iny=customerdao.getProductById(id); 
+    	        m.addAttribute("command",iny);
+    	        return "inventoryeditform"; 
+    	}
+        
     }  
    
     @RequestMapping(value="/editsave",method = RequestMethod.POST)  
-    public String editsave(@ModelAttribute("inventory") inventory iny){  
-    	customerdao.updateInventory(iny);  
-        return "redirect:/viewInventory";  
+    public String editsave(@ModelAttribute("inventory") inventory iny,HttpSession session){  
+    	if(session.getAttribute("username") == null) {
+    		
+    		return "redirect:/loginForm";
+    	}
+    	else {
+    		customerdao.updateInventory(iny);  
+            return "redirect:/viewInventory";  
+    	}
+    	
     }  
     
     @RequestMapping(value="/deleteinventory/{id}",method = RequestMethod.GET)  
-    public String delete(@PathVariable int id){  
-    	customerdao.deleteInventory(id);  
-        return "redirect:/viewInventory";  
+    public String delete(@PathVariable int id,HttpSession session){ 
+    	
+    	if(session.getAttribute("username") == null) {
+    		
+    		return "redirect:/loginForm";
+    	}
+    	else {
+    		customerdao.deleteInventory(id);  
+            return "redirect:/viewInventory";  
+    	}
+    	
     }   
     
     
@@ -117,41 +163,82 @@ public class CustomerController {
     
     
     @RequestMapping("/categoryForm")  
-    public String showformCayegory(Model m){  
-    	m.addAttribute("command", new Category());
-    	return "categoryForm"; 
+    public String showformCayegory(Model m,HttpSession session){  
+    	if(session.getAttribute("username") == null) {
+    		
+    		return "redirect:/loginForm";
+    	}
+    	else {
+    		m.addAttribute("command", new Category());
+        	return "categoryForm";
+    	}
+    	 
     }  
     
     @RequestMapping(value="/Categorysave",method = RequestMethod.POST)    
-    public String save(@ModelAttribute("emp") Category caty){    
-    	customerdao.save(caty);    
-        return "redirect:/viewCategory";
+    public String save(@ModelAttribute("emp") Category caty,HttpSession session){    
+    	if(session.getAttribute("username") == null) {
+    		
+    		return "redirect:/loginForm";
+    	}
+    	else {
+    		customerdao.save(caty);    
+            return "redirect:/viewCategory";
+    	}
+    	
     }    
   
     @RequestMapping("/viewCategory")    
-    public String viewCategory(Model m){ 
-        List<Category> list=customerdao.getCategory();    
-        m.addAttribute("list",list);  
-        return "viewCategory";    
+    public String viewCategory(Model m,HttpSession session){ 
+     if(session.getAttribute("username") == null) {
+    		
+    		return "redirect:/loginForm";
+     }
+     else {
+    	 List<Category> list=customerdao.getCategory();    
+         m.addAttribute("list",list);  
+         return "viewCategory"; 
+     }
+          
     }    
  
     @RequestMapping(value="/editcategory/{id}")  
-    public String editCategory(@PathVariable int id, Model m){  
-        Category caty=customerdao.getCategoryById(id);  
-        m.addAttribute("command",caty);
-        return "categoryeditform";  
+    public String editCategory(@PathVariable int id, Model m,HttpSession session){  
+        if(session.getAttribute("username") == null) {
+       		
+       		return "redirect:/loginForm";
+        }
+        else {
+        	 Category caty=customerdao.getCategoryById(id);  
+             m.addAttribute("command",caty);
+             return "categoryeditform";  
+        }
+       
     }  
   
     @RequestMapping(value="/editsaveCategory",method = RequestMethod.POST)  
-    public String editsaveCategory(@ModelAttribute("Category") Category caty){  
-    	customerdao.updateCategory(caty);  
-        return "redirect:/viewCategory";  
+    public String editsaveCategory(@ModelAttribute("Category") Category caty,HttpSession session){  
+        if(session.getAttribute("username") == null) {
+       		
+       		return "redirect:/loginForm";
+        }
+        else {
+        	customerdao.updateCategory(caty);  
+            return "redirect:/viewCategory";
+        }
+    	  
     }  
 
     @RequestMapping(value="/deletecategory/{id}",method = RequestMethod.GET)  
-    public String deleteCategory(@PathVariable int id){  
-    	customerdao.deleteCategory(id);  
-        return "redirect:/viewCategory";  
+    public String deleteCategory(@PathVariable int id,HttpSession session){  
+        if(session.getAttribute("username") == null) {
+       		
+       		return "redirect:/loginForm";
+        }else {
+        	customerdao.deleteCategory(id);  
+            return "redirect:/viewCategory";  
+        }
+    	
     }   
   
 }  

@@ -327,40 +327,7 @@ label.light {
 </head>
 <body><div class="container">
     <div class="content">
-        <div class="sidebar">
-         <ul class="side-nav">
-
-                <li class="side-nav__item">
-                    <a href="viewinventory" class="side-nav__link">
-                        <i class="car icon side-nav__icon" style="margin-bottom: 8px; margin-right: 10px;"></i>
-                        <div class="side-nav__text">Inventory Management</div>
-                    </a>
-                </li>
-
-                <li class="side-nav__item side-nav__item--active">
-                    <a href="viewCategory" class="side-nav__link">
-                        <i class="search icon side-nav__icon" style="margin-bottom: 8px; margin-right: 10px;"></i>
-                        <div class="side-nav__text">Category Management</div>
-                    </a>
-                </li>
-
-                <li class="side-nav__item">
-                    <a href="budget.jsp" class="side-nav__link">
-                        <i class="dollar sign icon side-nav__icon" style="margin-bottom: 8px; margin-right: 10px;"></i>
-                        <div class="side-nav__text">Brand Management</div>
-                    </a>
-                </li>
-
-               
-
-            </ul>
-        
-
-            <div class="legal">
-                &copy; 2023 by Bumble bee: Buy first and pay later. All rights reserved.
-            </div>
-        </div>
-
+       
         <div class="main-content">
         <div id="wrapper">
         <form method="post"  class="ui huge form" id="form" action="/SpringMVCCRUDSimple/registration" >
