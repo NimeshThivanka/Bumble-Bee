@@ -327,6 +327,21 @@ border: none;
   font-size: 7px;
    border-radius:3px;
 }
+
+.logOut{
+position:absolute;
+top:10%;
+right:10%;
+  border: none;
+  color: white;
+  background-color: #FF0000;
+  padding: 5px 5px;
+   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 7px;
+   border-radius:3px;
+}
     
     </style>
     
@@ -370,6 +385,7 @@ border: none;
         </div>
     
 	<h1 class="topic">Customer List</h1>
+	<a href="logout" class="logOut">Log Out</a>
 	<div class="table">
 	
 		<div class="table-header">

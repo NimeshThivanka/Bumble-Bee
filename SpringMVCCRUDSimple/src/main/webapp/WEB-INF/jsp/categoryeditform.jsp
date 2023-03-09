@@ -329,6 +329,21 @@ label.light {
   box-shadow: 0 -1px 0 rgba(255,255,255,0.1) inset;
   margin-bottom: 10px;
 }
+
+.logOut{
+position:absolute;
+top:10%;
+right:10%;
+  border: none;
+  color: white;
+  background-color: #FF0000;
+  padding: 5px 5px;
+   text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 7px;
+   border-radius:3px;
+}
 </style>
 
 </html>
@@ -371,6 +386,7 @@ label.light {
 
         <div class="main-content">
         <div id="wrapper">
+        <a href="logout" class="logOut">Log Out</a>
         
          <h1>Edit Inventory</h1>  
        <form:form method="POST" action="/SpringMVCCRUDSimple/editsaveCategory">    
