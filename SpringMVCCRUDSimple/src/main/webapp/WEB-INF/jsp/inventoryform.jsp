@@ -421,9 +421,11 @@ right:10%;
 
                     <div class="two fields">
                         <div class="field" id="form-container4">
-
-                            <label for="category">Category</label>
-                            <input type="text" name="category" id="category" >
+                            <label for="category">category:</label>
+                            <form:select path="category">
+                                  <form:option value="">Select a Category</form:option>
+                                  <form:options items="${categoryList}" itemValue="categoryName" itemLabel="categoryName" />
+                           </form:select>
                             <small class="category-error" style="color: red;visibility: hidden;">Field cannot be empty</small>
 
                         </div>

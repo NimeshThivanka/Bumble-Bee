@@ -1,7 +1,9 @@
 package com.CIS.loan.controllers;   
 import java.sql.Date;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -87,9 +89,12 @@ public class CustomerController {
     public String showform(Model m,HttpSession session){  
     	
     	if(session.getAttribute("username") == null) {
+    		
     		return "redirect:/loginForm";
     	}
     	else {
+    		 List<Category> list=customerdao.getCategory();        	 
+        	 m.addAttribute("categoryList",list); 
     		m.addAttribute("command", new inventory());
         	return "inventoryform";
     	}
@@ -200,9 +205,11 @@ public class CustomerController {
     		return "redirect:/loginForm";
      }
      else {
-    	 List<Category> list=customerdao.getCategory();    
-         m.addAttribute("list",list);  
+    	 List<Category> list=customerdao.getCategory();   
+    	 m.addAttribute("list",list); 
          return "viewCategory"; 
+
+         
      }
           
     }    
