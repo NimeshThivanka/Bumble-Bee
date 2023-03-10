@@ -57,15 +57,20 @@ public class CustomerController {
     }  
     
     @RequestMapping(value="/login",method = RequestMethod.GET)    
-    public String login(@RequestParam String username, @RequestParam String password,HttpSession session){    
-    	if (username.equals("admin@gmail.com") && password.equals("admin")) {
-            session.setAttribute("username", username);
-             return "redirect:/viewInventory";
-        }
-    	else {
+    public String login(@RequestParam String username, @RequestParam String password,HttpSession session,Model m){
+    	try {
+    		
+    		 login lg=customerdao.loginCheck(username,password);
+	         m.addAttribute("command",lg);
+	         session.setAttribute("username", username);
+	         return "redirect:/viewInventory";
+    		
+    	}catch(Exception e) {
     		 return "redirect:/loginForm";
     	}
-      
+    	    
+    	
+
     }  
     
     
@@ -240,5 +245,7 @@ public class CustomerController {
         }
     	
     }   
+    
+    
   
 }  

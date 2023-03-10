@@ -47,6 +47,13 @@ public List<customer> getCustomer(){
 } 
 
 
+//login
+
+public login loginCheck(String username,String password) {
+	String sql="select username, password from loan.admin where username=? and password=?";
+	return template.queryForObject(sql, new Object[]{username,password},new BeanPropertyRowMapper<login>(login.class)); 
+}
+
 //Inventory
 
 public int save(inventory i){  
