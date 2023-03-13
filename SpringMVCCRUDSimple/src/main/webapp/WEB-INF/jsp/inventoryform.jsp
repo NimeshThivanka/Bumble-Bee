@@ -358,6 +358,7 @@ right:10%;
                         <div class="side-nav__text">View Customer Details</div>
                     </a>
                 </li>
+                
 
                
 
@@ -371,7 +372,6 @@ right:10%;
 
         <div class="main-content">
         <div id="wrapper">
-        <a href="logout" class="logOut">Log Out</a>
         
         <form:form method="post" id="form" action="/SpringMVCCRUDSimple/save">  
         <h1>Add Inventory</h1>

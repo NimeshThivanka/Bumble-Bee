@@ -373,8 +373,13 @@ right:10%;
                         <div class="side-nav__text">View Customer</div>
                     </a>
                 </li>
-
-               
+                
+                <li class="side-nav__item">
+                    <a href="logout" class="side-nav__link">
+                        <i class="dollar sign icon side-nav__icon" style="margin-bottom: 8px; margin-right: 10px;"></i>
+                        <div>Log Out</div>
+                    </a>
+                </li>
 
             </ul>
         
@@ -383,9 +388,7 @@ right:10%;
                 &copy; 2023 by Bumble bee: Buy first and pay later. All rights reserved.
             </div>
         </div>
-    
 	<h1 class="topic">Inventory List</h1>
-	<a href="logout" class="logOut">Log Out</a>
 	<div class="table">
 	
 		<div class="table-header">

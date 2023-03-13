@@ -373,6 +373,13 @@ right:10%;
                         <div class="side-nav__text">View Customer</div>
                     </a>
                 </li>
+                
+                <li class="side-nav__item">
+                    <a href="logout" class="side-nav__link">
+                        <i class="dollar sign icon side-nav__icon" style="margin-bottom: 8px; margin-right: 10px;"></i>
+                        <div>Log Out</div>
+                    </a>
+                </li>
 
                
 
@@ -385,7 +392,6 @@ right:10%;
         </div>
     
 	<h1 class="topic">Customer List</h1>
-	<a href="logout" class="logOut">Log Out</a>
 	<div class="table">
 	
 		<div class="table-header">

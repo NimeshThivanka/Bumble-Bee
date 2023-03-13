@@ -330,7 +330,8 @@ label.light {
        
         <div class="main-content">
         <div id="wrapper">
-        <form method="post"  class="ui huge form" id="form" action="/SpringMVCCRUDSimple/registration" >
+        <center>
+        	<form method="post"  class="ui huge form" id="form" action="/SpringMVCCRUDSimple/registration" >
         <h1>Registration</h1>
 
                 <div class="field">
@@ -394,6 +395,7 @@ label.light {
                     <button type="submit">submit</button>
                 </div>
             </form>
+        </center>
             
       
        
