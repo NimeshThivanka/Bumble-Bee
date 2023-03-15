@@ -39,3 +39,10 @@ PRIMARY KEY (loanId),
     REFERENCES customer(customerId)	
 );
 
+Create table loan.admin(
+    adminId integer auto_increment,
+    username varchar(25),
+    password varchar(25),
+    primary key (adminId)
+);
+
